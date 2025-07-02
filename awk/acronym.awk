@@ -1,8 +1,9 @@
 #!/bin/awk -f
+BEGIN {
+    FPAT="[A-Za-z']*"
+}
 {
     acronym="";
-    gsub("_", "", $0)
-    split($0, words, /[ -]+/);
-    for (word in words) { acronym=acronym toupper(substr(words[word],0,1)); }
+    for (i = 1; i <= NF; i++) { acronym=acronym toupper(substr($i,0,1)); }
     print acronym;
 }
